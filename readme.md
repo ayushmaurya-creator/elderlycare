@@ -3,7 +3,7 @@
 A collaborative, voice-enabled healthcare ecosystem designed to help elderly individuals manage daily medications and doctor appointments independently while keeping family members and caretakers informed in real time.
 
 ## 🔗 Live Demo
-**[Click Here to View Live Prototype](https://ayushmaurya-creator.github.io/Elderly Care-platform/)** *(Demo Caretaker PIN: `1234`)*
+**[Click Here to View Live Prototype]((https://ayushmaurya-creator.github.io/elderlycare/))** *(Demo Caretaker PIN: `1234`)*
 
 ---
 
