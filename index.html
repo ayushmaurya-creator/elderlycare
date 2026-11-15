@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elderly Care & Medication Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <h1>🩺 Elderly Care</h1>
+        <div class="role-switcher">
+            <button id="elderlyTabBtn" class="active" onclick="switchView('elderly')">👴 Elderly View</button>
+            <button id="caretakerTabBtn" onclick="switchView('caretaker')">👨‍⚕️ Family / Caretaker</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="elderlyView" class="view-section">
+            <div class="welcome-banner">
+                <h2>Namaste! Aaj ki Dawaiyan aur Routine</h2>
+                <p>Dawa khane ke baad "Kha Li" button dabayein ya bol kar batayein.</p>
+                <button id="voiceBtn" class="voice-btn">🎤 Bol kar Mark karein ("Maine dawa kha li")</button>
+            </div>
+
+            
+            <div class="card" style="margin-bottom: 1.5rem; border-left: 6px solid #16a34a;">
+                <h3>❤️ Abhi Kaisa Feel Ho Raha Hai? (Your Health, Your Voice)</h3>
+                <p style="font-size: 0.95rem; color: #475569;">Koi dikkat ho toh button dabayein, family ko turant alert jayega:</p>
+                <div class="wellness-btns">
+                    <button class="well-btn good" onclick="logWellness('😊 Bilkul theek hu')">😊 Theek Hu</button>
+                    <button class="well-btn dizzy" onclick="logWellness('⚠️ Dawa se chakkar/problem ho rahi hai (Needs Review)')">😵‍💫 Chakkar / Problem Hai</button>
+                    <button class="well-btn skip" onclick="logWellness('⏸️ Agli dose thodi der baad lunga')">⏸️ Der Se Lunga</button>
+                </div>
+            </div>
+
+            <div class="grid-layout">
+                <div class="card">
+                    <h3>💊 Aaj ki Medications</h3>
+                    <div id="elderlyMedList" class="med-list"></div>
+                </div>
+
+                <div class="card">
+                    <h3>📅 Doctor Appointments</h3>
+                    <div id="elderlyApptList" class="appt-list"></div>
+                </div>
+            </div>
+        </section>
+        <section id="caretakerView" class="view-section hidden">
+            
+            <div id="passcodeScreen" class="card passcode-box">
+                <h3>🔒 Authorized Family/Caretaker Access</h3>
+                <p style="margin-bottom: 10px;">Profile manage karne ke liye 4-digit passcode dalein (Demo PIN: <strong>1234</strong>)</p>
+                <input type="password" id="pinInput" placeholder="Enter PIN (1234)" maxlength="4">
+                <button onclick="verifyPasscode()">Unlock Dashboard</button>
+                <p id="pinError" class="error-msg"></p>
+            </div>
+
+           
+            <div id="caretakerDashboard" class="hidden">
+                <div class="dashboard-header">
+                    <h2>👨‍👩‍👧‍👦 Caretaker Control Panel</h2>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="simulate-alert-btn" onclick="checkMissedMeds()">📧 Send Missed Dose Email Alert</button>
+                        <button class="reset-btn" onclick="resetDemoData()">🔄 Reset Demo</button>
+                    </div>
+                </div>
+
+               
+                <div class="card" style="margin-bottom: 1.5rem; background: #fffbeb; border: 1px solid #fde68a;">
+                    <h3>📧 Proactive Email & Elderly Status</h3>
+                    <input type="email" id="caretakerEmail" value="family.caretaker@gmail.com" placeholder="Enter Caretaker Email ID" style="margin-top: 8px;">
+                    <p id="elderlyStatusBanner" style="font-weight: bold; color: #b45309; margin-top: 4px;">
+                        📢 Latest Elderly Status: 😊 Normal
+                    </p>
+                </div>
+
+                <div class="grid-layout">
+                   
+                    <div class="card">
+                        <h3>➕ Add New Medication</h3>
+                        <form id="medForm">
+                            <input type="text" id="medName" placeholder="Medicine Name (e.g., Amlodipine 5mg)" required>
+                            <input type="text" id="medDosage" placeholder="Instructions (e.g., 1 Tablet after breakfast)" required>
+                            <input type="time" id="medTime" required>
+                            <button type="submit">Add to Schedule</button>
+                        </form>
+                    </div>
+
+                   
+                    <div class="card">
+                        <h3>🩺 Add Doctor Appointment</h3>
+                        <form id="apptForm">
+                            <input type="text" id="docName" placeholder="Doctor Name & Specialty" required>
+                            <input type="date" id="apptDate" required>
+                            <input type="time" id="apptTime" required>
+                            <button type="submit">Schedule Appointment</button>
+                        </form>
+                    </div>
+                </div>
+
+               
+                <div class="card" style="margin-top: 20px;">
+                    <h3>📊 Live Adherence Tracker & Manage Schedule</h3>
+                    <div class="progress-wrapper">
+                        <div id="adherenceBar" class="progress-bar">0%</div>
+                    </div>
+                    <div id="caretakerMedList" class="med-list"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
